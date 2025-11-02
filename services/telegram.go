@@ -57,6 +57,8 @@ func SendMessage(chatID int64, message string) ( error){
 
 func handleCommand(message *tgbotapi.Message) {
 	switch message.Command() {
+	case "start":
+		SendMessage(message.Chat.ID, "Wellcome to  GitGram Bot your One stop To Github Notification")
 	case "subscribe":
 		args := strings.Split(message.Text, " ")
 		if len(args) != 2 {
@@ -75,6 +77,17 @@ func handleCommand(message *tgbotapi.Message) {
 		repoFullName := args[1]
 		storage.Unsubscribe(message.Chat.ID, repoFullName)
 		SendMessage(message.Chat.ID, "Unsubscribed from "+repoFullName)
+
+	case "help":
+		helpStr :=  `
+		- /start - Welcome message and list of commands 
+		- /help - Display help information 
+		- /subscribe <owner/repo> 
+		- Subscribe to a repository      
+			 Example: /subscribe octocat/Hello-World   
+		-  /unsubscribe <owner/repo>  - Unsubscribe from a repository 
+		-  /list_subscriptions  - View your active subscriptions`
+		SendMessage(message.Chat.ID, helpStr)
 	default:
 		SendMessage(message.Chat.ID, "Unknown command")
 	}
