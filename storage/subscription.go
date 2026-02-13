@@ -14,6 +14,7 @@ var DB *gorm.DB
 func InitDB() {
 
 	var err error
+	log.Println("Initializing Database... ")
 	DB, err = gorm.Open(sqlite.Open("gitgram.db"), &gorm.Config{})
 	if err != nil {
 		log.Panic("Failed to Connect to database ", err)

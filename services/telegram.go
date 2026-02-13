@@ -13,7 +13,7 @@ func InitBot() {
 	var err error
 	Bot, err = tgbotapi.NewBotAPI(token)
 	if err != nil {
-		log.Panic(err)
+		log.Panic("Error Authorizing BOT... ", err)
 	}
 	log.Printf("Authorized on account %s", Bot.Self.UserName)
 }
