@@ -31,7 +31,7 @@ func HandleTelegramUpdates() {
 				handleSubscribe(chatID, update.Message.CommandArguments())
 			case "unsubscribe":
 				handleUnsubscribe(chatID, update.Message.CommandArguments())
-			case "list":
+			case "list_subscriptions":
 				handleList(chatID)
 			case "help":
 				handleHelp(chatID)
